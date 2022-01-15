@@ -6,3 +6,96 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #7b68ee;
+}
+
+.container {
+    border-radius: 3px;
+    background-color: #fff;
+}
+
+.container header {
+    display: flex;
+    align-items: center;
+    color: #43affc;
+    font-size: 26px;
+    border-bottom: 2px solid #ccc;
+    padding: 25px;
+}
+
+.container header i {
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.container .input-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+.container .input-box .info-text {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 12px 10px;
+    border-radius: 5px;
+}
+
+.container .input-box .error {
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    background-color: #f8d7da;
+}
+
+.container .input-box .pending {
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+    background-color: #d1ecf1;
+}
+
+.container .input-box :where(input, button){
+    width: 100%;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 0px;
+}
+
+.container .input-box input{
+    text-align: center;
+    border: 1px solid #ccc;
+}
+
+.container .input-box .separator {
+    height: 1px;
+    width: 100%;
+    margin: 25px 0px;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .input-box .separator::before {
+    content: "ou";
+    font-size: 16px;
+    padding: 0px 12px;
+    color: #ccc;
+    background-color: #fff;
+}
+
+.container .input-box button {
+    cursor: pointer;
+    color: #fff;
+    background-color: #43affc;
+}
