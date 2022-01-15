@@ -23,10 +23,11 @@ body {
 .container header {
     display: flex;
     align-items: center;
-    color: #43affc;
-    font-size: 26px;
-    border-bottom: 2px solid #ccc;
     padding: 25px;
+    font-size: 26px;
+    font-weight: 500;
+    color: #43affc;
+    border-bottom: 2px solid #ccc;
 }
 
 .container header i {
