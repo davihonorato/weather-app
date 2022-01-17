@@ -33,16 +33,25 @@ body {
 }
 
 .container header i {
-    font-size: 30px;
+    font-size: 0px;
     margin-right: 10px;
 }
 
+.container.active header i{
+    font-size: 30px;
+    margin-left: 4px;
+}
+
 .container .input-box {
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 25px;
+}
+
+.container.active .input-box {
+    display: none;
 }
 
 .container .input-box .info-text {
@@ -107,7 +116,7 @@ body {
 }
 
 .container .weather-box {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -115,11 +124,20 @@ body {
     font-size: 20px;
 }
 
+.container.active .weather-box {
+    display: flex;
+}
+
+.container .weather-box .date {
+    font-size: 16px;
+}
+
 .container .weather-box .temp {
     display: flex;
     font-size: 72px;
     font-weight: 500;
     padding: 5px 10px 0px;
+    color: #43affc;
 }
 
 .container .weather-box .temp .num {
@@ -166,10 +184,17 @@ body {
 
 .container .weather-box .bottom-details .column i {
     font-size: 38px;
+    color: #43affc;
+}
+
+.container .weather-box .bottom-details .column .details .temp {
+    padding: 0px;
+    color: #000000;
 }
 
 .container .weather-box .bottom-details .column .details .num {
     font-size: 18px;
+    font-weight: 500;
 }
 
 .container .weather-box .bottom-details .column .details .deg {
@@ -179,6 +204,7 @@ body {
 
 .container .weather-box .bottom-details .column .details span {
     display: block;
+    font-size: 14px;
     margin: -8px 0px 0px 0px;
 }
 
