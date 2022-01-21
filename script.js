@@ -1,3 +1,5 @@
+import api from "config.js";
+
 const container = document.querySelector(".container"),
 inputBox = container.querySelector(".input-box"),
 infoText = inputBox.querySelector(".info-text"),
