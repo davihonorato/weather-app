@@ -5,7 +5,8 @@ inputBox = container.querySelector(".input-box"),
 weatherBox = container.querySelector(".weather-box"),
 infoText = inputBox.querySelector(".info-text"),
 inputField = inputBox.querySelector("input"),
-inputBtn = inputBox.querySelector("button");
+inputBtn = inputBox.querySelector("button"),
+arrowBack = container.querySelector("header i");
 
 inputField.addEventListener("keyup", e => {
     if(e.key == "Enter" && inputField.value != ""){
@@ -67,19 +68,16 @@ function weatherDetails(info) {
         container.classList.add('active');
 
         //exibe todos os dados na tela
-        console.log(info)
         // location
         weatherBox.querySelector('.location span').innerText = `${info.name}, ${info.sys.country}`;
 
         //date
         let date = new Date();
         let months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-
         let day = date.getDate();
         let month = months[date.getMonth()]; // mes[numero do mes]
         let year = date.getFullYear();
         
-
         weatherBox.querySelector('.date span').innerText = `${day} de ${month} de ${year}`;
 
         // temp
@@ -122,3 +120,7 @@ function weatherDetails(info) {
         weatherBox.querySelector('.bottom-details .humidity .num').innerText = `${info.main.humidity}%`;
     }
 }
+
+arrowBack.addEventListener("click", ()=> {
+    container.classList.remove('active');
+});
