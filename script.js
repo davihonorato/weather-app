@@ -2,6 +2,7 @@ import api from "./config.js";
 
 const container = document.querySelector(".container"),
 inputBox = container.querySelector(".input-box"),
+weatherBox = container.querySelector(".weather-box"),
 infoText = inputBox.querySelector(".info-text"),
 inputField = inputBox.querySelector("input"),
 inputBtn = inputBox.querySelector("button");
@@ -56,5 +57,68 @@ function fetchData(apiReq){
 }
 
 function weatherDetails(info) {
-    console.log(info);
+    if(info.cod == 404) {
+        infoText.innerText = `'${inputField.value}': Cidade não encontrada.`;
+        infoText.classList.replace('pending', 'error');
+    }else {
+        // reseta os valores do campo de entrada (inputField) e da caixa de texto (infoText). Adiciona uma classe ao ".container"
+        inputField.value = '';
+        infoText.classList.remove('pending', 'error');
+        container.classList.add('active');
+
+        //exibe todos os dados na tela
+        console.log(info)
+        // location
+        weatherBox.querySelector('.location span').innerText = `${info.name}, ${info.sys.country}`;
+
+        //date
+        let date = new Date();
+        let months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+
+        let day = date.getDate();
+        let month = months[date.getMonth()]; // mes[numero do mes]
+        let year = date.getFullYear();
+        
+
+        weatherBox.querySelector('.date span').innerText = `${day} de ${month} de ${year}`;
+
+        // temp
+        weatherBox.querySelector('.temp .num').innerText = Math.floor(info.main.temp);
+
+        //weather
+        let weatherId = info.weather[0].id;
+        let weatherInfo = info.weather[0].description;
+        let weatherIcon;
+
+        //weather icon conditions
+        if(weatherId >= 200 || weatherId <= 232){
+            weatherIcon = '/Weather Icons/storm.svg';
+
+        }else if(weatherId >= 300 || weatherId <= 321){
+            weatherIcon = '/Weather Icons/rain.svg';
+
+        }else if(weatherId >= 500 || weatherId <= 531){
+            weatherIcon = '/Weather Icons/rain.svg';
+            
+        }else if(weatherId >= 600 || weatherId <= 622){
+            weatherIcon = '/Weather Icons/snow.svg';
+            
+        }else if(weatherId >= 701 || weatherId <= 781){
+            weatherIcon = '/Weather Icons/haze.svg';
+            
+        }else if(weatherId == 800){
+            weatherIcon = '/Weather Icons/clear.svg';
+            
+        }else if(weatherId >= 801 || weatherId <= 804){
+            weatherIcon = '/Weather Icons/cloud.svg';
+
+        }
+        
+        weatherBox.querySelector('.weather img').src = weatherIcon;
+        weatherBox.querySelector('.weather span').innerText = weatherInfo;
+
+        // bottom details
+        weatherBox.querySelector('.bottom-details .feels-like .num').innerText = Math.floor(info.main.feels_like);
+        weatherBox.querySelector('.bottom-details .humidity .num').innerText = `${info.main.humidity}%`;
+    }
 }
