@@ -8,12 +8,14 @@ inputField = inputBox.querySelector("input"),
 inputBtn = inputBox.querySelector("button"),
 arrowBack = container.querySelector("header i");
 
+// Enviar os dados ao apertar enter 
 inputField.addEventListener("keyup", e => {
     if(e.key == "Enter" && inputField.value != ""){
         requestAPI(inputField.value);
     }
 });
 
+//Enviar os dados ao apertar o botão
 inputBtn.addEventListener("click", () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(onSuccess, onError)
@@ -22,12 +24,14 @@ inputBtn.addEventListener("click", () => {
     }
 })
 
+// Caso o geolocation funcione
 function onSuccess(position){
     let apiReq = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${api.key}&units=${api.units}&lang=${api.lang}`;
     
     fetchData(apiReq);
 }
 
+// Caso o geolocation não funcione
 function onError(error) {
     if(error.code == 1) {
         infoText.innerText = "O usuário negou o acesso.";
@@ -39,12 +43,14 @@ function onError(error) {
     infoText.classList.add('error');
 }
 
+// Armazenando a requisição da API em uma variável
 function requestAPI(city) {
     let apiReq = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api.key}&units=${api.units}&lang=${api.lang}`;
     
     fetchData(apiReq);
 }
 
+// Fazendo a requisição na API
 function fetchData(apiReq){
     //Insere um novo texto em infoText e adiciona uma nova classe
     infoText.textContent = "Procurando...";
@@ -57,6 +63,7 @@ function fetchData(apiReq){
         .then(data => weatherDetails(data));
 }
 
+// exibindo todos os detalhes na tela
 function weatherDetails(info) {
     if(info.cod == 404) {
         infoText.innerText = `'${inputField.value}': Cidade não encontrada.`;
@@ -121,6 +128,7 @@ function weatherDetails(info) {
     }
 }
 
+// bottão arrowBack
 arrowBack.addEventListener("click", ()=> {
     container.classList.remove('active');
 });
